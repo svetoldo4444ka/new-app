@@ -1,0 +1,14 @@
+<form (ngSubmit)="onAddItem(createItem)" #createItem="ngForm">
+  <fieldset>
+    <input
+      placeholder="Please, add a task!"
+      type="text"
+      autocomplete="off"
+      class="form-control"
+      ngModel
+      name="name"
+      required>
+
+  </fieldset>
+</form>
+

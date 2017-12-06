@@ -1,0 +1,21 @@
+<div class="form-check" (dblclick)="onSwitchElement()" *ngIf="!showInput">
+  <input [attr.id]="newTask.id"  type="checkbox" class="form-check-input" [checked]="newTask.completed" (change)="newTask.completed = !newTask.completed">
+  <label class="form-check-label" [attr.for]="newTask.id"  >
+    {{newTask.name}}
+  </label>
+  <button type="button" (click)="onDeleteTask(newTask.id)" class="close" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form *ngIf="showInput"  #changeTask="ngForm">
+  <fieldset>
+    <input
+      type="text"
+      autocomplete="off"
+      class="form-control"
+      ngModel
+      name="name"
+      #newName
+      required>
+  </fieldset>
+</form>
