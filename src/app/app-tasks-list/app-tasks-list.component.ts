@@ -13,12 +13,14 @@ export class AppTasksListComponent implements OnInit {
 
   ngOnInit() {
     this.tasks = this.tasksService.getTasks();
-    this.tasksService.getActiveTask
-      .subscribe(
-        (tasks: Task[])  => {
-          this.tasks = tasks;
-        }
-      );
+    if (this.tasks.length !== 0) {
+      this.tasksService.getActiveTask()
+        .subscribe(
+          (tasks: Task[])  => {
+            this.tasks = tasks;
+          }
+        );
+    }
   }
 
 }

@@ -1,11 +1,14 @@
+import { Injectable, EventEmitter, Output} from '@angular/core';
 import { Task } from './task.model';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
-
+@Injectable()
 export class TasksService {
   changeListTasks = new Subject<Task[]>();
-  tasks: Task[] = [new Task(5, 'name', false)];
-  //counter: number = this.tasks.length;
+  //changeListTasks = new EventEmitter<Task[]>();
+  private tasks: Task[] = [];
+  counter: number = this.tasks.length;
 
 
   addNewTask(value: string) {
@@ -17,12 +20,11 @@ export class TasksService {
     this.tasks.splice(index, 1);
   }
   getTasks() {
-    return this.tasks.slice();
+    return this.tasks;
+    //return Observable.of(this.tasks);
   }
   getActiveTask() {
-    this.tasks.filter((item) => item.completed !== true);
-    console.log(this.tasks);
-    this.changeListTasks.next(this.tasks);
+    return this.changeListTasks.next(this.tasks.filter((item) => item.completed !== true));
   }
 }
 
