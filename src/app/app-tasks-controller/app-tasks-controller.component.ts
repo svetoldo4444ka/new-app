@@ -17,4 +17,12 @@ export class AppTasksControllerComponent implements OnInit {
   onGetActiveTask() {
     this.tasksService.getActiveTask();
   }
+
+  onGetCompletedTask() {
+    this.tasksService.getCompletedTasks();
+  }
+
+  onGetAllTasks() {
+    this.tasksService.getAllTasks();
+  }
 }

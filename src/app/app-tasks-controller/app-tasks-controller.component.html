@@ -2,8 +2,8 @@
   {{taskCounter}}tasks left
 </div>
 <ul class="filter">
-  <li><a href="#">All</a></li>
+  <li><a href="#" (click)="onGetAllTasks()">All</a></li>
   <li><a href="#" (click)="onGetActiveTask()">Active</a></li>
-  <li><a href="#">Completed</a></li>
+  <li><a href="#" (click)="onGetCompletedTask()">Completed</a></li>
 </ul>
 <a href="#">Clear Completed</a>

@@ -8,17 +8,17 @@ import { TasksService } from '../tasks.service';
   styleUrls: ['./app-tasks-list.component.css']
 })
 export class AppTasksListComponent implements OnInit {
-  tasks: Task[];
+  // tasks: Task[];
   constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
-    this.tasks = this.tasksService.getTasks();
-    this.tasksService.getActiveTask
-      .subscribe(
-        (tasks: Task[])  => {
-          this.tasks = tasks;
-        }
-      );
+    // this.tasks = this.tasksService.getTasks();
+    // this.tasksService.getActiveTask
+    //   .subscribe(
+    //     (tasks: Task[])  => {
+    //       this.tasks = tasks;
+    //     }
+    //   );
   }
 
 }
