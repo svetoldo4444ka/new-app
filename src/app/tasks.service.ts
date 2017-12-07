@@ -1,7 +1,9 @@
+import { Injectable, EventEmitter, Output} from '@angular/core';
 import { Task } from './task.model';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
-
+@Injectable()
 export class TasksService {
   // changeListTasks = new Subject<Task[]>();
   tasks: Task[] = [
