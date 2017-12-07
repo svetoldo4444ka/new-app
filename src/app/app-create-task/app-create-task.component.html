@@ -1,6 +1,6 @@
 <form class="form" (ngSubmit)="onAddItem(createItem)" #createItem="ngForm">
   <fieldset>
-    <input type="checkbox" class="toggle-input">
+    <input name="checked" type="checkbox" [(ngModel)]="isChecked" (click)="onToggleComplited()" class="toggle-input">
     <input
       placeholder="Please, add a task!"
       type="text"

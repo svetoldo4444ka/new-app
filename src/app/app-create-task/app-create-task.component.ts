@@ -10,6 +10,7 @@ import { TasksService } from '../tasks.service';
 })
 export class AppCreateTaskComponent implements OnInit {
   task: Task;
+  isChecked: boolean = false;
   constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
@@ -17,5 +18,9 @@ export class AppCreateTaskComponent implements OnInit {
   onAddItem(form: NgForm) {
     this.tasksService.addNewTask(form.value.name);
     form.reset();
+  }
+  onToggleComplited() {
+    this.isChecked = !this.isChecked;
+    this.tasksService.toggleComplited(this.isChecked);
   }
 }

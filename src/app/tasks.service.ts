@@ -21,9 +21,9 @@ export class TasksService {
     this.changingTasks = this.tasks.filter((item) => item.completed !== true);
     this.changeListTasks.next(this.changingTasks);
   }
-  getUpdateTasks() {
-    this.changeListTasks.next(this.tasks);
-  }
+  // getUpdateTasks() {
+  //   this.changeListTasks.next(this.tasks);
+  // }
   getAllTask() {
     this.changeListTasks.next(this.tasks);
   }
@@ -43,6 +43,24 @@ export class TasksService {
      }
    });
     this.changeListTasks.next(this.tasks);
+  }
+  toggleComplited(value) {
+    if (value) {
+      for (let task of this.tasks){
+        task.completed = true;
+      }
+    } else {
+      for (let task of this.tasks){
+        task.completed = false;
+      }
+    }
+  }
+  updateCounter(obj) {
+
+    this.changingTasks = this.tasks.filter((item) => console.log(item.completed === false));
+    // this.changeListTasks.next(this.changingTasks);
+    // console.log(this.changingTasks.length);
+    // this.changeListLength.next(this.changingTasks.length);
   }
 }
 

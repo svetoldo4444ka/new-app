@@ -11,7 +11,6 @@ export class AppTasksControllerComponent implements OnInit {
   constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
-    console.log(this.taskCounter);
     this.tasksService.changeListLength
       .subscribe(
         (number)  => {
