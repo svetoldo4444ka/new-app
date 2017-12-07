@@ -7,22 +7,29 @@ import { TasksService } from '../tasks.service';
   styleUrls: ['./app-tasks-controller.component.css']
 })
 export class AppTasksControllerComponent implements OnInit {
-  taskCounter: number;
+  taskCounter: number = this.tasksService.counter;
   constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
-    this.taskCounter = this.tasksService.counter;
+    console.log(this.taskCounter);
+    this.tasksService.changeListLength
+      .subscribe(
+        (number)  => {
+          this.taskCounter = number;
+        }
+      );
   }
 
   onGetActiveTask() {
     this.tasksService.getActiveTask();
   }
-
-  onGetCompletedTask() {
+  onGetAllTask() {
+    this.tasksService.getAllTask();
+  }
+  onGetCompletedTasks() {
     this.tasksService.getCompletedTasks();
   }
-
-  onGetAllTasks() {
-    this.tasksService.getAllTasks();
+  onGetCompletedTask() {
+    this.tasksService.getCompletedTask();
   }
 }

@@ -1,45 +1,48 @@
-import { Injectable, EventEmitter, Output} from '@angular/core';
 import { Task } from './task.model';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 
-@Injectable()
 export class TasksService {
-  // changeListTasks = new Subject<Task[]>();
-  tasks: Task[] = [
-    new Task(5, 'completed 1', true),
-    new Task(5, 'active 1', false),
-    new Task(5, 'completed 2', true),
-    new Task(5, 'active 2', false),
-  ];
-  allTasks = this.tasks;
+  private tasks: Task[] = [];
+  changeListTasks = new Subject<Task[]>();
+  changeListLength = new Subject<number>();
+  changingTasks= [];
   counter: number = this.tasks.length;
-
-
+  deleteTask(id) {
+    this.changingTasks = this.tasks.filter( (item, index) => index !== id);
+    this.tasks = this.changingTasks;
+    this.changeListTasks.next(this.tasks);
+  }
   addNewTask(value: string) {
     this.tasks.push(new Task(this.tasks.length, value, false));
-    this.allTasks = this.tasks;
+    this.changeListTasks.next(this.tasks);
+    this.changeListLength.next(this.tasks.length);
   }
-
-  deleteTask(id) {
-    let index = this.tasks.map((item) => item.id).indexOf(id);
-    this.tasks.splice(index, 1);
-    this.allTasks = this.tasks;
+  getActiveTask()  {
+    this.changingTasks = this.tasks.filter((item) => item.completed !== true);
+    this.changeListTasks.next(this.changingTasks);
   }
-  getTasks() {
-    return this.tasks;
+  getUpdateTasks() {
+    this.changeListTasks.next(this.tasks);
   }
-  getActiveTask() {
-    this.tasks = this.allTasks;
-    this.tasks = this.tasks.filter((item) => item.completed !== true);
+  getAllTask() {
+    this.changeListTasks.next(this.tasks);
   }
-
   getCompletedTasks() {
-    this.tasks = this.allTasks;
-    this.tasks = this.tasks.filter((item) => item.completed == true);
+    this.changingTasks = this.tasks.filter((item) => item.completed === true);
+    this.changeListTasks.next(this.changingTasks);
   }
-
-  getAllTasks() {
-    this.tasks = this.allTasks;
+  getCompletedTask() {
+    this.changingTasks = this.tasks.filter((item) => item.completed === false);
+    this.tasks = this.changingTasks;
+    this.changeListTasks.next(this.tasks);
+  }
+  changeTask(value, id) {
+   this.tasks.map((item, index) => {
+     if (index === id) {
+       item.name = value;
+     }
+   });
+    this.changeListTasks.next(this.tasks);
   }
 }
+

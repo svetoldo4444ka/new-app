@@ -1,5 +1,6 @@
-<form (ngSubmit)="onAddItem(createItem)" #createItem="ngForm">
+<form class="form" (ngSubmit)="onAddItem(createItem)" #createItem="ngForm">
   <fieldset>
+    <input type="checkbox" class="toggle-input">
     <input
       placeholder="Please, add a task!"
       type="text"
@@ -8,7 +9,6 @@
       ngModel
       name="name"
       required>
-
   </fieldset>
 </form>
 

@@ -7,15 +7,16 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<form *ngIf="showInput"  #changeTask="ngForm">
+<form *ngIf="showInput" (ngSubmit)="onChangeValue(changeTask, newTask.id)" #changeTask="ngForm">
   <fieldset>
     <input
-      [attr.value]="newTask.name"
+      [value]="newTask.name"
       type="text"
       autocomplete="off"
       class="form-control"
       ngModel
       name="name"
+      id="test44"
       #newName
       required>
   </fieldset>

@@ -14,6 +14,7 @@ export class AppTaskComponent implements OnInit {
   constructor(private tasksService: TasksService) { }
 
   ngOnInit() {
+
   }
   onDeleteTask(id) {
     this.tasksService.deleteTask(id);
@@ -21,5 +22,9 @@ export class AppTaskComponent implements OnInit {
 
   onSwitchElement() {
     this.showInput = true;
+  }
+  onChangeValue(form: NgForm, id: number) {
+    this.tasksService.changeTask(form.value.name, id);
+    this.showInput = false;
   }
 }
