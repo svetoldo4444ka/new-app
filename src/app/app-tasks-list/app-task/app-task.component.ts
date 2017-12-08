@@ -27,7 +27,7 @@ export class AppTaskComponent implements OnInit {
     this.tasksService.changeTask(form.value.name, id);
     this.showInput = false;
   }
-  onUpdateCounter(obj) {
-    this.tasksService.updateCounter(obj);
+  onUpdateCounter(id) {
+    this.tasksService.updateCounter(id);
   }
 }

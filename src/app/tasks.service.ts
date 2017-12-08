@@ -11,19 +11,20 @@ export class TasksService {
     this.changingTasks = this.tasks.filter( (item, index) => index !== id);
     this.tasks = this.changingTasks;
     this.changeListTasks.next(this.tasks);
+    this.changingTasks = this.tasks.filter((item) => item.completed === false);
+    this.changeListLength.next(this.changingTasks.length);
   }
   addNewTask(value: string) {
     this.tasks.push(new Task(this.tasks.length, value, false));
     this.changeListTasks.next(this.tasks);
-    this.changeListLength.next(this.tasks.length);
+    this.changingTasks = this.tasks.filter((item) => item.completed === false);
+    this.changeListLength.next(this.changingTasks.length);
+
   }
   getActiveTask()  {
     this.changingTasks = this.tasks.filter((item) => item.completed !== true);
     this.changeListTasks.next(this.changingTasks);
   }
-  // getUpdateTasks() {
-  //   this.changeListTasks.next(this.tasks);
-  // }
   getAllTask() {
     this.changeListTasks.next(this.tasks);
   }
@@ -54,13 +55,17 @@ export class TasksService {
         task.completed = false;
       }
     }
+    this.changingTasks = this.tasks.filter((item) => item.completed === false);
+    this.changeListLength.next(this.changingTasks.length);
   }
-  updateCounter(obj) {
-
-    this.changingTasks = this.tasks.filter((item) => console.log(item.completed === false));
-    // this.changeListTasks.next(this.changingTasks);
-    // console.log(this.changingTasks.length);
-    // this.changeListLength.next(this.changingTasks.length);
+  updateCounter(id) {
+    for (let task of this.tasks){
+      if (task.id === id) {
+        task.completed = !task.completed;
+      }
+    }
+    this.changingTasks = this.tasks.filter((item) => item.completed === false);
+    this.changeListLength.next(this.changingTasks.length);
   }
 }
 

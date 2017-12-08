@@ -19,7 +19,7 @@ export class AppCreateTaskComponent implements OnInit {
     this.tasksService.addNewTask(form.value.name);
     form.reset();
   }
-  onToggleComplited() {
+  onToggleComplited(id) {
     this.isChecked = !this.isChecked;
     this.tasksService.toggleComplited(this.isChecked);
   }

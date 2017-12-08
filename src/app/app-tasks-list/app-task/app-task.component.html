@@ -1,5 +1,5 @@
-<div class="form-check" (dblclick)="onSwitchElement()" *ngIf="!showInput">
-  <input name="completed"  (click)="onUpdateCounter(newTaks)" [attr.id]="newTask.id"  type="checkbox" class="form-check-input" [checked]="newTask.completed" (change)="newTask.completed = !newTask.completed">
+<div class="form-check">
+  <input (click)="onUpdateCounter(newTask.id)" [attr.id]="newTask.id"  type="checkbox" class="form-check-input" [checked]="newTask.completed">
   <label class="form-check-label" [attr.for]="newTask.id"  >
     {{newTask.name}}
   </label>
@@ -7,17 +7,3 @@
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<!--<form *ngIf="showInput" (ngSubmit)="onChangeValue(changeTask, newTask.id)" #changeTask="ngForm">-->
-  <!--<fieldset>-->
-    <!--<input-->
-      <!--[value]="newTask.name"-->
-      <!--type="text"-->
-      <!--autocomplete="off"-->
-      <!--class="form-control"-->
-      <!--ngModel-->
-      <!--name="name"-->
-      <!--id="test44"-->
-      <!--#newName-->
-      <!--required>-->
-  <!--</fieldset>-->
-<!--</form>-->

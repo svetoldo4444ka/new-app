@@ -16,6 +16,7 @@ export class AppTasksListComponent implements OnInit {
     this.tasksService.changeListTasks
       .subscribe(
         (tasks: Task[])  => {
+          console.log(1);
           this.tasks = tasks;
         }
       );
